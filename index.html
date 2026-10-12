@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-:root {
+:root{
   --green:#123c2b;
   --green2:#20583c;
   --leaf:#5b8d4b;
@@ -20,7 +20,6 @@
   --gold:#c7a75b;
   --text:#1d3024;
   --muted:#778176;
-  --white:#fff;
   --line:#e8e9df;
   --shadow:0 12px 35px rgba(18,60,43,.08);
 }
@@ -37,312 +36,705 @@ button{cursor:pointer}
 a{color:inherit;text-decoration:none}
 .container{width:min(1160px,92%);margin:auto}
 
-/* ورود ظریف */
+/* INTRO: فقط لوگو، ۳ ثانیه */
 .intro{
-  position:fixed;inset:0;z-index:9999;
+  position:fixed;
+  inset:0;
+  z-index:9999;
   background:var(--cream);
-  display:flex;align-items:center;justify-content:center;
-  flex-direction:column;gap:13px;
-  animation:introOut .65s ease 1.65s forwards;
-  pointer-events:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  animation:introOut .5s ease 2.5s forwards;
 }
 .intro img{
-  width:190px;max-width:55vw;
+  width:210px;
+  max-width:58vw;
+  max-height:55vh;
+  object-fit:contain;
   animation:logoIn .9s cubic-bezier(.2,.8,.2,1) both;
 }
-.intro span{font-size:12px;color:var(--green);letter-spacing:2px}
 @keyframes logoIn{
-  from{opacity:0;transform:translateY(14px) scale(.92)}
+  from{opacity:0;transform:translateY(12px) scale(.92)}
   to{opacity:1;transform:translateY(0) scale(1)}
 }
 @keyframes introOut{
   to{opacity:0;visibility:hidden}
 }
 
-/* سربرگ */
+/* HEADER */
 header{
-  position:sticky;top:0;z-index:100;
-  background:rgba(251,250,246,.94);
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(251,250,246,.95);
   backdrop-filter:blur(16px);
   border-bottom:1px solid rgba(18,60,43,.08);
 }
 .topbar{
-  min-height:82px;
-  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  min-height:78px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
 }
-.brand{display:flex;align-items:center;gap:10px;min-width:0}
-.brand img{width:62px;height:62px;object-fit:contain}
-.brand-name{font-size:22px;font-weight:900;color:var(--green)}
-.brand-tag{font-size:10px;color:var(--muted);margin-top:2px}
-.desktop-links{display:flex;align-items:center;gap:25px;font-size:13px;font-weight:600}
+.brand{display:block;min-width:0}
+.brand-name{
+  font-size:27px;
+  font-weight:900;
+  color:var(--green);
+  line-height:1.5;
+}
+.brand-tag{
+  font-size:10px;
+  color:var(--muted);
+  margin-top:1px;
+}
+.desktop-links{
+  display:flex;
+  align-items:center;
+  gap:25px;
+  font-size:13px;
+  font-weight:600;
+}
 .desktop-links a:hover{color:var(--leaf)}
-.header-actions{display:flex;align-items:center;gap:10px}
-.search{
-  width:220px;display:flex;align-items:center;gap:8px;
-  padding:10px 13px;background:#f0f0e8;border-radius:12px;
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
-.search input{width:100%;border:0;outline:0;background:transparent;font-size:12px}
+.search{
+  width:220px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 13px;
+  background:#f0f0e8;
+  border-radius:12px;
+}
+.search input{
+  width:100%;
+  border:0;
+  outline:0;
+  background:transparent;
+  font-size:12px;
+}
 .cart-button{
-  position:relative;border:0;background:var(--green);color:white;
-  border-radius:12px;padding:12px 15px;font-weight:700;
+  position:relative;
+  border:0;
+  background:var(--green);
+  color:white;
+  border-radius:12px;
+  padding:12px 15px;
+  font-weight:700;
 }
 .cart-count{
-  position:absolute;top:-7px;left:-7px;
-  background:var(--gold);color:#fff;
-  min-width:20px;height:20px;border-radius:20px;
-  display:grid;place-items:center;font-size:11px;
+  position:absolute;
+  top:-7px;
+  left:-7px;
+  background:var(--gold);
+  color:#fff;
+  min-width:20px;
+  height:20px;
+  border-radius:20px;
+  display:grid;
+  place-items:center;
+  font-size:11px;
 }
 
-/* بنر */
+/* HERO */
 .hero{padding:35px 0 25px}
 .hero-box{
-  position:relative;overflow:hidden;
-  min-height:360px;border-radius:27px;
+  position:relative;
+  overflow:hidden;
+  min-height:360px;
+  border-radius:27px;
   padding:50px;
   color:white;
   background:
     radial-gradient(ellipse at 15% 10%,rgba(130,165,88,.28),transparent 38%),
     linear-gradient(120deg,#102f22,#20583c 65%,#2e6746);
-  display:flex;align-items:center;
+  display:flex;
+  align-items:center;
 }
 .hero-box:before,.hero-box:after{
-  content:"";position:absolute;border:1px solid rgba(255,255,255,.09);
-  border-radius:50%;pointer-events:none;
+  content:"";
+  position:absolute;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:50%;
+  pointer-events:none;
 }
-.hero-box:before{width:400px;height:400px;left:-100px;top:-170px}
-.hero-box:after{width:290px;height:290px;left:20px;bottom:-200px}
-.hero-content{position:relative;z-index:1;max-width:580px}
+.hero-box:before{
+  width:400px;height:400px;
+  left:-100px;top:-170px;
+}
+.hero-box:after{
+  width:290px;height:290px;
+  left:20px;bottom:-200px;
+}
+.hero-content{
+  position:relative;
+  z-index:1;
+  max-width:650px;
+}
 .eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  color:#e4d19b;font-size:12px;font-weight:600;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:#e4d19b;
+  font-size:12px;
+  font-weight:600;
   margin-bottom:18px;
 }
-.eyebrow:before{content:"";width:24px;height:1px;background:var(--gold)}
-.hero h1{font-size:clamp(30px,5vw,51px);line-height:1.55;margin:0 0 12px;font-weight:900}
-.hero h1 em{font-style:normal;color:#d6c184}
-.hero p{color:#d7e2d8;line-height:2.2;font-size:14px;max-width:470px;margin:0 0 25px}
-.hero-buttons{display:flex;flex-wrap:wrap;gap:12px}
+.eyebrow:before{
+  content:"";
+  width:24px;
+  height:1px;
+  background:var(--gold);
+}
+.hero h1{
+  font-size:clamp(30px,5vw,51px);
+  line-height:1.55;
+  margin:0 0 12px;
+  font-weight:900;
+}
+.hero h1 em{
+  font-style:normal;
+  color:#d6c184;
+}
+.hero p{
+  color:#d7e2d8;
+  line-height:2.2;
+  font-size:14px;
+  max-width:490px;
+  margin:0 0 25px;
+}
+.hero-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
 .btn-primary,.btn-secondary{
-  border-radius:12px;padding:13px 22px;font-size:13px;font-weight:700;
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border-radius:12px;
+  padding:13px 22px;
+  font-size:13px;
+  font-weight:700;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
   transition:.2s;
 }
-.btn-primary{background:var(--gold);color:#172c1e;border:1px solid var(--gold)}
-.btn-primary:hover{transform:translateY(-2px);filter:brightness(1.05)}
-.btn-secondary{border:1px solid #78917e;color:white}
-.hero-mark{
-  position:absolute;left:8%;top:50%;transform:translateY(-50%);
-  width:220px;height:220px;border-radius:50%;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.13);
-  display:grid;place-items:center;
+.btn-primary{
+  background:var(--gold);
+  color:#172c1e;
+  border:1px solid var(--gold);
 }
-.hero-mark img{width:80%;height:80%;object-fit:contain;border-radius:20px}
+.btn-primary:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.05);
+}
+.btn-secondary{
+  border:1px solid #78917e;
+  color:white;
+}
 
-/* مزایا */
+/* BENEFITS */
 .benefits{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:15px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
   padding:12px 0 45px;
 }
 .benefit{
-  display:flex;align-items:center;gap:14px;
-  padding:19px;background:white;border:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:19px;
+  background:white;
+  border:1px solid var(--line);
   border-radius:16px;
 }
 .benefit-icon{
-  width:43px;height:43px;flex-shrink:0;
-  border-radius:13px;background:#edf2e8;
-  color:var(--green);display:grid;place-items:center;font-size:20px;
+  width:43px;
+  height:43px;
+  flex-shrink:0;
+  border-radius:13px;
+  background:#edf2e8;
+  color:var(--green);
+  display:grid;
+  place-items:center;
+  font-size:20px;
 }
-.benefit strong{font-size:13px;display:block;margin-bottom:4px}
-.benefit small{font-size:11px;color:var(--muted)}
+.benefit strong{
+  font-size:13px;
+  display:block;
+  margin-bottom:4px;
+}
+.benefit small{
+  font-size:11px;
+  color:var(--muted);
+}
 
-/* محصولات */
+/* PRODUCTS */
 .section{padding:28px 0 55px}
 .section-head{
-  display:flex;align-items:end;justify-content:space-between;
-  gap:15px;margin-bottom:23px;
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:23px;
 }
-.section-kicker{font-size:11px;color:var(--leaf);font-weight:800}
-.section h2{font-size:26px;margin:5px 0 0;font-weight:900}
-.section-desc{font-size:12px;color:var(--muted);margin:8px 0 0}
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.section-kicker{
+  font-size:11px;
+  color:var(--leaf);
+  font-weight:800;
+}
+.section h2{
+  font-size:26px;
+  margin:5px 0 0;
+  font-weight:900;
+}
+.section-desc{
+  font-size:12px;
+  color:var(--muted);
+  margin:8px 0 0;
+}
+.filters{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:22px;
+}
 .filter{
-  border:1px solid var(--line);background:white;color:#647064;
-  border-radius:30px;padding:9px 15px;font-size:12px;
+  border:1px solid var(--line);
+  background:white;
+  color:#647064;
+  border-radius:30px;
+  padding:9px 15px;
+  font-size:12px;
 }
-.filter.active{background:var(--green);border-color:var(--green);color:white}
+.filter.active{
+  background:var(--green);
+  border-color:var(--green);
+  color:white;
+}
 .sort{
-  border:1px solid var(--line);background:white;border-radius:10px;
-  padding:9px;font-size:12px;color:var(--text);
+  border:1px solid var(--line);
+  background:white;
+  border-radius:10px;
+  padding:9px;
+  font-size:12px;
+  color:var(--text);
 }
-.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}
+.products{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:17px;
+}
 .product{
-  background:white;border:1px solid #ededE5;border-radius:17px;
-  overflow:hidden;transition:.25s;min-width:0;
+  background:white;
+  border:1px solid #ededE5;
+  border-radius:17px;
+  overflow:hidden;
+  transition:.25s;
+  min-width:0;
 }
-.product:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.product:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow);
+}
 .product-visual{
-  height:155px;background:linear-gradient(145deg,#f2f2e7,#e8eddf);
-  display:grid;place-items:center;position:relative;overflow:hidden;
+  height:155px;
+  background:linear-gradient(145deg,#f2f2e7,#e8eddf);
+  display:grid;
+  place-items:center;
+  position:relative;
+  overflow:hidden;
 }
 .product-visual:after{
-  content:"";position:absolute;width:115px;height:115px;
-  border:1px solid rgba(32,88,60,.12);border-radius:50%;
+  content:"";
+  position:absolute;
+  width:115px;
+  height:115px;
+  border:1px solid rgba(32,88,60,.12);
+  border-radius:50%;
 }
-.product-symbol{font-size:57px;position:relative;z-index:1}
+.product-symbol{
+  font-size:57px;
+  position:relative;
+  z-index:1;
+}
 .product-badge{
-  position:absolute;top:10px;right:10px;z-index:2;
-  background:#fff;border-radius:7px;padding:5px 8px;
-  font-size:10px;color:var(--green);font-weight:700;
+  position:absolute;
+  top:10px;
+  right:10px;
+  z-index:2;
+  background:#fff;
+  border-radius:7px;
+  padding:5px 8px;
+  font-size:10px;
+  color:var(--green);
+  font-weight:700;
 }
 .product-body{padding:14px}
-.product-category{font-size:10px;color:var(--leaf);font-weight:700}
-.product h3{font-size:13px;line-height:1.8;margin:7px 0 6px;min-height:46px}
-.product-desc{font-size:11px;line-height:1.8;color:var(--muted);min-height:38px}
-.product-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:15px}
-.price{font-size:13px;font-weight:900;color:var(--green)}
-.price small{display:block;color:var(--muted);font-size:9px;font-weight:400;margin-top:4px}
+.product-category{
+  font-size:10px;
+  color:var(--leaf);
+  font-weight:700;
+}
+.product h3{
+  font-size:13px;
+  line-height:1.8;
+  margin:7px 0 6px;
+  min-height:46px;
+}
+.product-desc{
+  font-size:11px;
+  line-height:1.8;
+  color:var(--muted);
+  min-height:38px;
+}
+.product-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-top:15px;
+}
+.price{
+  font-size:13px;
+  font-weight:900;
+  color:var(--green);
+}
+.price small{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  font-weight:400;
+  margin-top:4px;
+}
 .add-btn{
-  width:36px;height:36px;border:0;border-radius:11px;
-  background:#edf2e8;color:var(--green);font-size:22px;
+  width:36px;
+  height:36px;
+  border:0;
+  border-radius:11px;
+  background:#edf2e8;
+  color:var(--green);
+  font-size:22px;
 }
-.add-btn:hover{background:var(--green);color:white}
-.empty{text-align:center;padding:35px;color:var(--muted);grid-column:1/-1}
+.add-btn:hover{
+  background:var(--green);
+  color:white;
+}
+.empty{
+  text-align:center;
+  padding:35px;
+  color:var(--muted);
+  grid-column:1/-1;
+}
 
-/* معرفی */
-.about{
-  padding:35px 0 65px;
-}
+/* ABOUT */
+.about{padding:35px 0 65px}
 .about-box{
-  background:#f0f0e6;border-radius:23px;padding:34px;
-  display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:center;
+  background:#f0f0e6;
+  border-radius:23px;
+  padding:38px;
 }
-.about h2{font-size:25px;margin:7px 0 12px}
-.about p{font-size:13px;line-height:2.2;color:#677367}
-.about-logo{display:flex;justify-content:center}
-.about-logo img{width:210px;max-width:80%;object-fit:contain;border-radius:12px}
+.about h2{
+  font-size:25px;
+  margin:7px 0 12px;
+}
+.about p{
+  font-size:13px;
+  line-height:2.2;
+  color:#677367;
+  max-width:800px;
+}
 
-/* سبد خرید */
+/* CART */
 .overlay{
-  position:fixed;inset:0;background:rgba(8,24,15,.48);
-  z-index:500;opacity:0;visibility:hidden;transition:.25s;
+  position:fixed;
+  inset:0;
+  background:rgba(8,24,15,.48);
+  z-index:500;
+  opacity:0;
+  visibility:hidden;
+  transition:.25s;
 }
-.overlay.show{opacity:1;visibility:visible}
+.overlay.show{
+  opacity:1;
+  visibility:visible;
+}
 .cart-panel{
-  position:fixed;top:0;bottom:0;left:0;width:min(420px,92vw);
-  z-index:501;background:#fbfaf6;padding:22px;
-  transform:translateX(-105%);transition:.3s;overflow:auto;
+  position:fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  width:min(420px,92vw);
+  z-index:501;
+  background:#fbfaf6;
+  padding:22px;
+  transform:translateX(-105%);
+  transition:.3s;
+  overflow:auto;
 }
 .cart-panel.show{transform:translateX(0)}
-.cart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.cart-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
 .cart-head h2{font-size:20px}
-.close-btn{border:0;background:#eceee5;border-radius:10px;width:38px;height:38px;font-size:20px}
+.close-btn{
+  border:0;
+  background:#eceee5;
+  border-radius:10px;
+  width:38px;
+  height:38px;
+  font-size:20px;
+}
 .cart-items{display:grid;gap:10px}
 .cart-item{
-  background:white;border:1px solid var(--line);border-radius:13px;
-  padding:13px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:13px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
 }
 .cart-item strong{font-size:12px}
-.cart-item small{display:block;font-size:11px;color:var(--muted);margin-top:5px}
-.qty{display:flex;align-items:center;gap:9px}
-.qty button{border:0;background:#edf2e8;color:var(--green);width:27px;height:27px;border-radius:8px}
-.cart-total{border-top:1px solid var(--line);margin-top:20px;padding-top:18px}
-.total-line{display:flex;justify-content:space-between;font-weight:800;margin-bottom:15px}
-.checkout-btn{width:100%;border:0;background:var(--green);color:white;border-radius:12px;padding:14px;font-weight:700}
-.cart-note{font-size:11px;color:var(--muted);line-height:2;margin-top:12px}
-.cart-empty{text-align:center;color:var(--muted);padding:35px 0}
+.cart-item small{
+  display:block;
+  font-size:11px;
+  color:var(--muted);
+  margin-top:5px;
+}
+.qty{
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+.qty button{
+  border:0;
+  background:#edf2e8;
+  color:var(--green);
+  width:27px;
+  height:27px;
+  border-radius:8px;
+}
+.cart-total{
+  border-top:1px solid var(--line);
+  margin-top:20px;
+  padding-top:18px;
+}
+.total-line{
+  display:flex;
+  justify-content:space-between;
+  font-weight:800;
+  margin-bottom:15px;
+}
+.checkout-btn{
+  width:100%;
+  border:0;
+  background:var(--green);
+  color:white;
+  border-radius:12px;
+  padding:14px;
+  font-weight:700;
+}
+.cart-note{
+  font-size:11px;
+  color:var(--muted);
+  line-height:2;
+  margin-top:12px;
+}
+.cart-empty{
+  text-align:center;
+  color:var(--muted);
+  padding:35px 0;
+}
 
-/* تماس */
-footer{background:#102e21;color:#e5eee5;padding:36px 0 20px}
-.footer-main{display:flex;justify-content:space-between;align-items:center;gap:25px;flex-wrap:wrap}
-.footer-brand{font-size:23px;font-weight:900}
-footer p{font-size:12px;color:#b9cbbd;line-height:2}
-.footer-tag{color:#d8c58f;font-size:12px}
-.footer-bottom{border-top:1px solid #31523f;margin-top:24px;padding-top:16px;color:#aebfb1;font-size:10px}
+/* FOOTER */
+footer{
+  background:#102e21;
+  color:#e5eee5;
+  padding:36px 0 20px;
+}
+.footer-main{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:25px;
+  flex-wrap:wrap;
+}
+.footer-brand{
+  font-size:25px;
+  font-weight:900;
+}
+footer p{
+  font-size:12px;
+  color:#b9cbbd;
+  line-height:2;
+}
+.footer-tag{
+  color:#d8c58f;
+  font-size:12px;
+}
+.footer-bottom{
+  border-top:1px solid #31523f;
+  margin-top:24px;
+  padding-top:16px;
+  color:#aebfb1;
+  font-size:10px;
+}
 
-/* موبایل */
+/* MOBILE NAV */
 .mobile-bottom{display:none}
+
 @media(max-width:900px){
   .desktop-links{display:none}
   .search{width:175px}
-  .hero-mark{left:4%;width:170px;height:170px;opacity:.85}
-  .hero-content{max-width:65%}
   .products{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
+
 @media(max-width:620px){
   .container{width:92%}
-  .topbar{min-height:68px;gap:8px}
-  .brand{gap:6px}
-  .brand img{width:46px;height:46px}
-  .brand-name{font-size:18px}
+  .topbar{
+    min-height:68px;
+    gap:8px;
+  }
+  .brand-name{font-size:23px}
   .brand-tag{font-size:9px}
-  .search{width:39px;height:39px;padding:10px;justify-content:center;background:#f0f0e8}
+  .search{
+    width:39px;
+    height:39px;
+    padding:10px;
+    justify-content:center;
+    background:#f0f0e8;
+  }
   .search input{display:none}
-  .cart-button{padding:10px 12px;font-size:12px}
+  .cart-button{
+    padding:10px 12px;
+    font-size:12px;
+  }
   .hero{padding-top:18px}
-  .hero-box{padding:28px 22px;min-height:365px;border-radius:21px;align-items:flex-start}
+  .hero-box{
+    padding:28px 22px;
+    min-height:365px;
+    border-radius:21px;
+    align-items:center;
+  }
   .hero-content{max-width:100%}
-  .hero h1{font-size:30px;line-height:1.7}
-  .hero p{font-size:12px;max-width:90%;line-height:2}
-  .hero-mark{left:-35px;bottom:-20px;top:auto;transform:none;width:145px;height:145px;opacity:.23}
+  .hero h1{
+    font-size:30px;
+    line-height:1.7;
+  }
+  .hero p{
+    font-size:12px;
+    max-width:100%;
+    line-height:2;
+  }
   .hero-buttons{gap:8px}
-  .btn-primary,.btn-secondary{padding:12px 15px;font-size:12px}
-  .benefits{grid-template-columns:1fr;gap:9px;padding-bottom:25px}
+  .btn-primary,.btn-secondary{
+    padding:12px 15px;
+    font-size:12px;
+  }
+  .benefits{
+    grid-template-columns:1fr;
+    gap:9px;
+    padding-bottom:25px;
+  }
   .benefit{padding:13px}
   .section{padding:20px 0 40px}
-  .section-head{align-items:flex-start;flex-direction:column}
+  .section-head{
+    align-items:flex-start;
+    flex-direction:column;
+  }
   .section h2{font-size:23px}
   .sort{width:100%}
   .filters{gap:7px}
-  .filter{padding:8px 12px;font-size:11px}
-  .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .filter{
+    padding:8px 12px;
+    font-size:11px;
+  }
+  .products{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+  }
   .product-visual{height:125px}
   .product-symbol{font-size:46px}
   .product-body{padding:11px}
-  .product h3{font-size:12px;min-height:43px}
-  .product-desc{font-size:10px;min-height:37px}
+  .product h3{
+    font-size:12px;
+    min-height:43px;
+  }
+  .product-desc{
+    font-size:10px;
+    min-height:37px;
+  }
   .price{font-size:12px}
-  .add-btn{width:32px;height:32px}
-  .about-box{grid-template-columns:1fr;padding:23px}
-  .about-logo{grid-row:1}
-  .about-logo img{width:150px}
+  .add-btn{
+    width:32px;
+    height:32px;
+  }
+  .about-box{padding:23px}
   .about h2{font-size:22px}
   .mobile-bottom{
-    position:fixed;display:flex;justify-content:space-around;align-items:center;
-    bottom:0;right:0;left:0;height:63px;z-index:200;
-    background:rgba(255,255,255,.97);border-top:1px solid var(--line);
+    position:fixed;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    bottom:0;
+    right:0;
+    left:0;
+    height:63px;
+    z-index:200;
+    background:rgba(255,255,255,.97);
+    border-top:1px solid var(--line);
     padding-bottom:env(safe-area-inset-bottom);
   }
   .mobile-bottom a,.mobile-bottom button{
-    display:flex;flex-direction:column;align-items:center;gap:4px;
-    font-size:10px;color:#6a776b;background:none;border:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+    font-size:10px;
+    color:#6a776b;
+    background:none;
+    border:0;
   }
   .mobile-bottom span{font-size:19px}
   body{padding-bottom:65px}
   footer{padding-bottom:30px}
 }
 @media(prefers-reduced-motion:reduce){
-  *,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  *,*:before,*:after{
+    animation-duration:.01ms!important;
+    transition-duration:.01ms!important;
+    scroll-behavior:auto!important;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- اینترو: تنها محل نمایش لوگو -->
 <div class="intro" aria-hidden="true">
-  <img src="file_00000000987081f496fbca83dfdf7226.png" alt="">
-  <span>همراه زمین، پشتیبان رشد</span>
+  <img src="file_00000000987081f496fbca83dfdf7226.png" alt="بارآور">
 </div>
 
 <header>
   <div class="container topbar">
+
+    <!-- سربرگ فقط نوشته دارد، بدون لوگو -->
     <a href="#" class="brand" aria-label="صفحه اصلی بارآور">
-      <img src="file_00000000987081f496fbca83dfdf7226.png" alt="لوگوی بارآور">
-      <div>
-        <div class="brand-name">بارآور</div>
-        <div class="brand-tag">همراه زمین، پشتیبان رشد</div>
-      </div>
+      <div class="brand-name">بارآور</div>
+      <div class="brand-tag">همراه زمین، پشتیبان رشد</div>
     </a>
 
     <nav class="desktop-links">
@@ -357,43 +749,55 @@ footer p{font-size:12px;color:#b9cbbd;line-height:2}
         <span>⌕</span>
         <input id="searchInput" type="search" placeholder="جست‌وجوی محصول...">
       </label>
-      <button class="cart-button" id="openCart">سبد خرید <span id="headerCount" class="cart-count">۰</span></button>
+      <button class="cart-button" id="openCart">
+        سبد خرید <span id="headerCount" class="cart-count">۰</span>
+      </button>
     </div>
   </div>
 </header>
 
 <main>
+
   <section class="hero">
     <div class="container">
       <div class="hero-box">
         <div class="hero-content">
           <div class="eyebrow">انتخابی مطمئن برای کشاورزی بهتر</div>
           <h1>رشد از زمین آغاز می‌شود؛<br><em>بارآور، همراه شماست.</em></h1>
-          <p>برای زمین پربارتر، انتخاب هوشمندانه‌تری داشته باشید. محصولات و تجهیزات کشاورزی را در یک تجربه ساده و دلنشین بررسی کنید.</p>
+          <p>
+            برای زمین پربارتر، انتخاب هوشمندانه‌تری داشته باشید.
+            محصولات و تجهیزات کشاورزی را در یک تجربه ساده و دلنشین بررسی کنید.
+          </p>
           <div class="hero-buttons">
             <a class="btn-primary" href="#products">مشاهده محصولات <span>←</span></a>
             <a class="btn-secondary" href="#about">آشنایی با بارآور</a>
           </div>
         </div>
-        <div class="hero-mark">
-          <img src="file_00000000987081f496fbca83dfdf7226.png" alt="">
-        </div>
       </div>
     </div>
   </section>
 
-  <section class="container benefits" aria-label="مزایای بارآور">
+  <section class="container benefits">
     <div class="benefit">
       <div class="benefit-icon">🌿</div>
-      <div><strong>انتخاب برای رشد بهتر</strong><small>محصولات متناسب با نیاز زمین</small></div>
+      <div>
+        <strong>انتخاب برای رشد بهتر</strong>
+        <small>محصولات متناسب با نیاز زمین</small>
+      </div>
     </div>
     <div class="benefit">
       <div class="benefit-icon">✓</div>
-      <div><strong>اطلاعات شفاف محصول</strong><small>بررسی مشخصات پیش از خرید</small></div>
+      <div>
+        <strong>اطلاعات شفاف محصول</strong>
+        <small>بررسی مشخصات پیش از خرید</small>
+      </div>
     </div>
     <div class="benefit">
       <div class="benefit-icon">↗</div>
-      <div><strong>خرید آسان</strong><small>جست‌وجو و انتخاب سریع محصولات</small></div>
+      <div>
+        <strong>خرید آسان</strong>
+        <small>جست‌وجو و انتخاب سریع محصولات</small>
+      </div>
     </div>
   </section>
 
@@ -426,18 +830,20 @@ footer p{font-size:12px;color:#b9cbbd;line-height:2}
   <section class="about" id="about">
     <div class="container">
       <div class="about-box">
-        <div>
-          <div class="section-kicker">درباره ما</div>
-          <h2>بارآور؛ همراه زمین، پشتیبان رشد</h2>
-          <p>ما باور داریم هر زمین ظرفیت رشد بیشتری دارد. بارآور برای فراهم‌کردن تجربه‌ای ساده‌تر در آشنایی با محصولات کشاورزی شکل گرفته است؛ جایی برای بررسی، مقایسه و انتخاب آگاهانه.</p>
-          <p>این نسخه نمایشی است. مشخصات، قیمت‌ها و محصولات نمونه هستند و باید پیش از شروع فروش واقعی با اطلاعات فروشگاه جایگزین شوند.</p>
-        </div>
-        <div class="about-logo">
-          <img src="file_00000000987081f496fbca83dfdf7226.png" alt="نشان برند بارآور">
-        </div>
+        <div class="section-kicker">درباره ما</div>
+        <h2>بارآور؛ همراه زمین، پشتیبان رشد</h2>
+        <p>
+          ما باور داریم هر زمین ظرفیت رشد بیشتری دارد.
+          بارآور برای فراهم‌کردن تجربه‌ای ساده‌تر در آشنایی با محصولات کشاورزی شکل گرفته است؛
+          جایی برای بررسی، مقایسه و انتخاب آگاهانه.
+        </p>
+        <p>
+          محصولات و قیمت‌های فعلی نمونه هستند و پیش از شروع فروش واقعی باید با اطلاعات فروشگاه جایگزین شوند.
+        </p>
       </div>
     </div>
   </section>
+
 </main>
 
 <footer id="contact">
@@ -449,7 +855,7 @@ footer p{font-size:12px;color:#b9cbbd;line-height:2}
       </div>
       <div>
         <div class="footer-tag">از انتخاب تا برداشت، همراه شما</div>
-        <p>برای درج شماره تماس و اطلاعات فروشگاه، این بخش را به‌روزرسانی کنید.</p>
+        <p>اطلاعات تماس فروشگاه را در این قسمت اضافه کنید.</p>
       </div>
     </div>
     <div class="footer-bottom">© بارآور — تمامی حقوق محفوظ است.</div>
@@ -464,6 +870,7 @@ footer p{font-size:12px;color:#b9cbbd;line-height:2}
 </nav>
 
 <div class="overlay" id="overlay"></div>
+
 <aside class="cart-panel" id="cartPanel" aria-label="سبد خرید">
   <div class="cart-head">
     <h2>سبد خرید شما</h2>
@@ -471,15 +878,18 @@ footer p{font-size:12px;color:#b9cbbd;line-height:2}
   </div>
   <div class="cart-items" id="cartItems"></div>
   <div class="cart-total">
-    <div class="total-line"><span>جمع کل</span><span id="cartTotal">۰ تومان</span></div>
+    <div class="total-line">
+      <span>جمع کل</span>
+      <span id="cartTotal">۰ تومان</span>
+    </div>
     <button class="checkout-btn" id="checkoutBtn">ادامه سفارش</button>
-    <p class="cart-note">این نسخه نمایشی است؛ سفارش‌ها ثبت یا برای فروشگاه ارسال نمی‌شوند.</p>
+    <p class="cart-note">
+      این نسخه نمایشی است؛ برای ثبت سفارش واقعی باید سیستم سفارش‌گیری راه‌اندازی شود.
+    </p>
   </div>
 </aside>
 
 <script>
-const LOGO = "file_00000000987081f496fbca83dfdf7226.png";
-
 const products = [
   {id:1,name:"کود کامل NPK",category:"fertilizer",categoryName:"کود کشاورزی",price:285000,unit:"بسته نمونه",symbol:"🌱",badge:"محبوب",desc:"کود ترکیبی برای تغذیه متعادل گیاه"},
   {id:2,name:"کود آهن",category:"fertilizer",categoryName:"کود کشاورزی",price:195000,unit:"بسته نمونه",symbol:"🍃",badge:"",desc:"محصول نمونه برای تکمیل سبد تغذیه"},
@@ -496,27 +906,37 @@ const products = [
 ];
 
 let selectedCategory = "all";
-let cart = JSON.parse(localStorage.getItem("baravarCart") || "{}");
+let cart = {};
+
+try{
+  cart = JSON.parse(localStorage.getItem("baravarCart") || "{}");
+}catch(e){
+  cart = {};
+}
 
 const faNumber = n => Number(n).toLocaleString("fa-IR");
 const toman = n => faNumber(n) + " تومان";
 
 function renderProducts(){
   const search = document.getElementById("searchInput").value.trim().toLowerCase();
+
   let list = products.filter(p =>
     (selectedCategory === "all" || p.category === selectedCategory) &&
     (p.name.toLowerCase().includes(search) || p.categoryName.toLowerCase().includes(search))
   );
+
   const sort = document.getElementById("sortSelect").value;
   if(sort === "low") list.sort((a,b)=>a.price-b.price);
   if(sort === "high") list.sort((a,b)=>b.price-a.price);
   if(sort === "name") list.sort((a,b)=>a.name.localeCompare(b.name,"fa"));
 
   const grid = document.getElementById("productsGrid");
+
   if(!list.length){
     grid.innerHTML = '<div class="empty">محصولی پیدا نشد. عبارت دیگری جست‌وجو کن.</div>';
     return;
   }
+
   grid.innerHTML = list.map(p=>`
     <article class="product">
       <div class="product-visual">
@@ -537,7 +957,9 @@ function renderProducts(){
 }
 
 function saveCart(){
-  localStorage.setItem("baravarCart",JSON.stringify(cart));
+  try{
+    localStorage.setItem("baravarCart",JSON.stringify(cart));
+  }catch(e){}
   renderCart();
 }
 
@@ -555,23 +977,30 @@ function changeQty(id,delta){
 function renderCart(){
   const items = Object.entries(cart).filter(([id,qty])=>qty>0);
   const count = items.reduce((sum,[id,qty])=>sum+qty,0);
+
   document.getElementById("headerCount").textContent = faNumber(count);
 
   const total = items.reduce((sum,[id,qty])=>{
     const p = products.find(x=>x.id===Number(id));
     return sum + (p ? p.price*qty : 0);
   },0);
+
   document.getElementById("cartTotal").textContent = toman(total);
 
   const box = document.getElementById("cartItems");
+
   if(!items.length){
     box.innerHTML = '<div class="cart-empty">سبد خریدت هنوز خالیه.</div>';
   }else{
     box.innerHTML = items.map(([id,qty])=>{
       const p = products.find(x=>x.id===Number(id));
       if(!p) return "";
+
       return `<div class="cart-item">
-        <div><strong>${p.name}</strong><small>${toman(p.price*qty)}</small></div>
+        <div>
+          <strong>${p.name}</strong>
+          <small>${toman(p.price*qty)}</small>
+        </div>
         <div class="qty">
           <button data-qty="${id}" data-delta="-1">−</button>
           <span>${faNumber(qty)}</span>
@@ -586,26 +1015,32 @@ function openCart(){
   document.getElementById("overlay").classList.add("show");
   document.getElementById("cartPanel").classList.add("show");
 }
+
 function closeCart(){
   document.getElementById("overlay").classList.remove("show");
   document.getElementById("cartPanel").classList.remove("show");
 }
 
 document.getElementById("filters").addEventListener("click",e=>{
-  const btn=e.target.closest("[data-category]");
+  const btn = e.target.closest("[data-category]");
   if(!btn) return;
-  selectedCategory=btn.dataset.category;
-  document.querySelectorAll(".filter").forEach(b=>b.classList.toggle("active",b===btn));
+
+  selectedCategory = btn.dataset.category;
+
+  document.querySelectorAll(".filter").forEach(b=>{
+    b.classList.toggle("active",b===btn);
+  });
+
   renderProducts();
 });
 
 document.getElementById("productsGrid").addEventListener("click",e=>{
-  const btn=e.target.closest("[data-add]");
+  const btn = e.target.closest("[data-add]");
   if(btn) addToCart(Number(btn.dataset.add));
 });
 
 document.getElementById("cartItems").addEventListener("click",e=>{
-  const btn=e.target.closest("[data-qty]");
+  const btn = e.target.closest("[data-qty]");
   if(btn) changeQty(Number(btn.dataset.qty),Number(btn.dataset.delta));
 });
 
@@ -621,11 +1056,13 @@ document.getElementById("checkoutBtn").addEventListener("click",()=>{
     alert("سبد خرید خالی است.");
     return;
   }
-  alert("این نسخه نمایشی است و سفارش واقعی ثبت نمی‌کند. برای فعال‌سازی سفارش باید بخش ثبت سفارش و پایگاه داده راه‌اندازی شود.");
+
+  alert("این نسخه نمایشی است و سفارش واقعی ثبت نمی‌کند. برای فعال‌سازی ثبت سفارش باید بخش سفارش‌گیری و پایگاه داده راه‌اندازی شود.");
 });
 
 renderProducts();
 renderCart();
 </script>
+
 </body>
 </html>
