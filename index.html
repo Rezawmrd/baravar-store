@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#123d2b">
-<meta name="description" content="بارآور؛ همراه زمین، پشتیبان رشد. فروشگاه آنلاین نهاده‌های کشاورزی، کود، بذر و تجهیزات باغبانی.">
+<meta name="description" content="بارآور؛ همراه زمین، پشتیبان رشد. فروشگاه نهاده‌ها و تجهیزات کشاورزی.">
 <title>بارآور | همراه زمین، پشتیبان رشد</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,6 +44,10 @@ body{
   padding-bottom:85px;
 }
 
+body.locked{
+  overflow:hidden;
+}
+
 button,input,select{
   font-family:inherit;
 }
@@ -54,8 +58,9 @@ button{
 
 button:focus-visible,
 input:focus-visible,
-select:focus-visible{
-  outline:3px solid rgba(214,181,109,.8);
+select:focus-visible,
+a:focus-visible{
+  outline:3px solid var(--gold);
   outline-offset:3px;
 }
 
@@ -79,7 +84,7 @@ a{
   display:flex;
   align-items:center;
   justify-content:center;
-  animation:introOut .6s ease 2.5s forwards;
+  animation:introOut .5s ease 2.5s forwards;
 }
 
 .intro img{
@@ -108,7 +113,7 @@ header{
   position:sticky;
   top:0;
   z-index:100;
-  background:rgba(250,251,247,.94);
+  background:rgba(250,251,247,.95);
   backdrop-filter:blur(18px);
   border-bottom:1px solid rgba(18,61,43,.08);
 }
@@ -118,7 +123,40 @@ header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:20px;
+  gap:15px;
+}
+
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.menu-toggle{
+  width:45px;
+  height:45px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  background:#edf2e9;
+  border:1px solid #dfe8db;
+  border-radius:14px;
+  flex-shrink:0;
+  transition:.25s;
+}
+
+.menu-toggle span{
+  width:20px;
+  height:2px;
+  background:var(--green);
+  border-radius:5px;
+  transition:.25s;
+}
+
+.menu-toggle:hover{
+  background:#dce9d8;
 }
 
 .brand{
@@ -168,6 +206,237 @@ header{
   color:var(--green);
   font-size:11px;
   margin-right:5px;
+}
+
+/* SIDE MENU */
+
+.menu-overlay{
+  position:fixed;
+  inset:0;
+  z-index:1200;
+  background:rgba(8,25,16,.62);
+  backdrop-filter:blur(4px);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .3s,visibility .3s;
+}
+
+.menu-overlay.open{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+
+.side-menu{
+  position:absolute;
+  right:0;
+  top:0;
+  bottom:0;
+  width:min(365px,88vw);
+  background:#fafbf7;
+  display:flex;
+  flex-direction:column;
+  transform:translateX(105%);
+  transition:transform .38s cubic-bezier(.2,.8,.2,1);
+  box-shadow:-15px 0 45px rgba(0,0,0,.14);
+}
+
+.menu-overlay.open .side-menu{
+  transform:translateX(0);
+}
+
+.side-menu-header{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(140deg,#103624,#246543);
+  padding:31px 24px 28px;
+  color:white;
+  flex-shrink:0;
+}
+
+.side-menu-header:after{
+  content:"";
+  position:absolute;
+  width:190px;
+  height:190px;
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:50%;
+  left:-85px;
+  bottom:-120px;
+}
+
+.side-menu-brand{
+  font-size:32px;
+  font-weight:900;
+  line-height:1.5;
+  color:white;
+}
+
+.side-menu-tagline{
+  color:#e3d1a2;
+  font-size:11px;
+  margin-top:3px;
+}
+
+.side-menu-caption{
+  font-size:10px;
+  color:rgba(255,255,255,.63);
+  margin-top:15px;
+}
+
+.side-menu-close{
+  position:absolute;
+  left:17px;
+  top:19px;
+  width:37px;
+  height:37px;
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.12);
+  border-radius:12px;
+  color:white;
+  font-size:23px;
+  z-index:2;
+}
+
+.side-menu-body{
+  flex:1;
+  overflow-y:auto;
+  padding:18px 15px;
+  overscroll-behavior:contain;
+}
+
+.menu-section-label{
+  color:#99a49b;
+  font-size:10px;
+  font-weight:800;
+  padding:8px 13px 11px;
+}
+
+.menu-link{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:transparent;
+  border:0;
+  border-radius:14px;
+  padding:13px 12px;
+  color:#294436;
+  text-align:right;
+  font-size:12px;
+  font-weight:750;
+  transition:.2s;
+}
+
+.menu-link:hover,
+.menu-link.active{
+  background:#eaf1e7;
+  color:var(--green);
+}
+
+.menu-icon{
+  width:35px;
+  height:35px;
+  flex-shrink:0;
+  border-radius:11px;
+  background:#edf2e9;
+  display:grid;
+  place-items:center;
+  font-size:18px;
+  color:var(--green);
+}
+
+.menu-link.active .menu-icon{
+  background:#dbe9d5;
+}
+
+.menu-link-text{
+  flex:1;
+}
+
+.menu-chevron{
+  font-size:16px;
+  color:#94a398;
+  transition:transform .3s;
+}
+
+.accordion-toggle.expanded .menu-chevron{
+  transform:rotate(180deg);
+}
+
+.accordion-content{
+  display:grid;
+  grid-template-rows:0fr;
+  transition:grid-template-rows .35s ease;
+}
+
+.accordion-content.open{
+  grid-template-rows:1fr;
+}
+
+.accordion-inner{
+  min-height:0;
+  overflow:hidden;
+}
+
+.accordion-list{
+  padding:4px 20px 9px 8px;
+  margin-right:28px;
+  border-right:1px solid #dbe5d8;
+}
+
+.submenu-link{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  width:100%;
+  padding:11px 12px;
+  border:0;
+  background:transparent;
+  border-radius:10px;
+  font-size:11px;
+  font-weight:650;
+  color:#66786b;
+  text-align:right;
+}
+
+.submenu-link:hover{
+  color:var(--green);
+  background:#edf3e9;
+}
+
+.submenu-dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--green3);
+  flex-shrink:0;
+}
+
+.menu-divider{
+  height:1px;
+  background:#e8ece5;
+  margin:13px 8px;
+}
+
+.side-menu-footer{
+  padding:17px 22px calc(17px + env(safe-area-inset-bottom));
+  border-top:1px solid var(--border);
+  background:#f4f6ef;
+  flex-shrink:0;
+}
+
+.side-menu-footer strong{
+  display:block;
+  color:var(--green);
+  font-size:12px;
+}
+
+.side-menu-footer p{
+  color:var(--muted);
+  font-size:10px;
+  margin-top:3px;
 }
 
 /* HERO */
@@ -266,7 +535,6 @@ header{
 
 .primary-btn:hover{
   transform:translateY(-2px);
-  filter:brightness(1.04);
 }
 
 /* BENEFITS */
@@ -309,7 +577,11 @@ header{
   color:var(--muted);
 }
 
-/* SECTION */
+/* SHOP */
+
+.shop{
+  padding-bottom:48px;
+}
 
 .section-heading{
   display:flex;
@@ -335,12 +607,6 @@ header{
   color:var(--muted);
   font-size:12px;
   margin-top:2px;
-}
-
-/* SEARCH AND FILTERS */
-
-.shop{
-  padding-bottom:48px;
 }
 
 .shop-tools{
@@ -544,12 +810,6 @@ header{
   font-size:23px;
   display:grid;
   place-items:center;
-  transition:.2s;
-}
-
-.add-btn:hover{
-  background:var(--green3);
-  transform:scale(1.05);
 }
 
 .empty-state{
@@ -621,7 +881,7 @@ footer{
   padding-top:14px;
 }
 
-/* MODAL */
+/* PRODUCT MODAL */
 
 .modal-backdrop{
   position:fixed;
@@ -671,7 +931,6 @@ footer{
   border:0;
   border-radius:50%;
   background:rgba(255,255,255,.94);
-  box-shadow:0 3px 12px rgba(0,0,0,.08);
   color:var(--green);
   font-size:22px;
 }
@@ -763,7 +1022,6 @@ footer{
 
 .detail-list{
   display:grid;
-  gap:0;
   margin-bottom:20px;
 }
 
@@ -796,10 +1054,6 @@ footer{
   color:white;
   font-size:14px;
   font-weight:800;
-}
-
-.modal-add:hover{
-  background:var(--green2);
 }
 
 .modal-note{
@@ -997,6 +1251,9 @@ footer{
   font-weight:700;
   transition:.25s;
   white-space:nowrap;
+  max-width:90vw;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
 .toast.show{
@@ -1023,6 +1280,7 @@ footer{
 }
 
 @media(max-width:620px){
+
   body{
     padding-bottom:80px;
   }
@@ -1033,6 +1291,16 @@ footer{
 
   .header-inner{
     min-height:68px;
+  }
+
+  .header-right{
+    gap:9px;
+  }
+
+  .menu-toggle{
+    width:42px;
+    height:42px;
+    border-radius:12px;
   }
 
   .brand-name{
@@ -1259,20 +1527,40 @@ footer{
 
 <body>
 
-<!-- INTRO: فقط لوگو، بدون نوشته -->
+<!-- INTRO -->
 <div class="intro" id="intro">
-  <img src="file_00000000987081f496fbca83dfdf7226.png"
-       alt="لوگوی بارآور"
-       onerror="this.style.display='none'">
+  <img
+    src="file_00000000987081f496fbca83dfdf7226.png"
+    alt="لوگوی بارآور"
+    onerror="this.style.display='none'"
+  >
 </div>
 
 <!-- HEADER -->
 <header>
   <div class="container header-inner">
-    <a class="brand" href="#home" aria-label="صفحه اصلی بارآور">
-      <span class="brand-name">بارآور</span>
-      <span class="brand-tagline">همراه زمین، پشتیبان رشد</span>
-    </a>
+
+    <div class="header-right">
+
+      <button
+        class="menu-toggle"
+        onclick="openMenu()"
+        aria-label="باز کردن منوی سایت"
+        aria-controls="sideMenu"
+        aria-expanded="false"
+        id="menuToggle"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <a class="brand" href="#home">
+        <span class="brand-name">بارآور</span>
+        <span class="brand-tagline">همراه زمین، پشتیبان رشد</span>
+      </a>
+
+    </div>
 
     <div class="header-actions">
       <button class="header-cart" onclick="openCart()">
@@ -1280,8 +1568,175 @@ footer{
         <span class="cart-count" id="headerCartCount">۰</span>
       </button>
     </div>
+
   </div>
 </header>
+
+<!-- SIDE MENU -->
+<div
+  class="menu-overlay"
+  id="menuOverlay"
+  onclick="menuBackdropClose(event)"
+>
+  <aside
+    class="side-menu"
+    id="sideMenu"
+    role="dialog"
+    aria-modal="true"
+    aria-label="منوی فروشگاه بارآور"
+  >
+
+    <div class="side-menu-header">
+
+      <button
+        class="side-menu-close"
+        onclick="closeMenu()"
+        aria-label="بستن منو"
+      >×</button>
+
+      <div class="side-menu-brand">بارآور</div>
+      <div class="side-menu-tagline">
+        همراه زمین، پشتیبان رشد
+      </div>
+
+      <div class="side-menu-caption">
+        فروشگاه محصولات و تجهیزات کشاورزی
+      </div>
+
+    </div>
+
+    <div class="side-menu-body">
+
+      <div class="menu-section-label">دسترسی سریع</div>
+
+      <button
+        class="menu-link active"
+        onclick="menuNavigate('home')"
+      >
+        <span class="menu-icon">⌂</span>
+        <span class="menu-link-text">صفحه اصلی</span>
+      </button>
+
+      <button
+        class="menu-link accordion-toggle"
+        id="productsAccordionBtn"
+        onclick="toggleProductsAccordion()"
+        aria-expanded="false"
+        aria-controls="productsAccordion"
+      >
+        <span class="menu-icon">▦</span>
+        <span class="menu-link-text">محصولات فروشگاه</span>
+        <span class="menu-chevron">⌄</span>
+      </button>
+
+      <div
+        class="accordion-content"
+        id="productsAccordion"
+      >
+        <div class="accordion-inner">
+
+          <div class="accordion-list">
+
+            <button
+              class="submenu-link"
+              onclick="menuFilter('all')"
+            >
+              <span class="submenu-dot"></span>
+              همه محصولات
+            </button>
+
+            <button
+              class="submenu-link"
+              onclick="menuFilter('fertilizer')"
+            >
+              <span class="submenu-dot"></span>
+              کودهای کشاورزی
+            </button>
+
+            <button
+              class="submenu-link"
+              onclick="menuFilter('seed')"
+            >
+              <span class="submenu-dot"></span>
+              بذر و نشا
+            </button>
+
+            <button
+              class="submenu-link"
+              onclick="menuFilter('equipment')"
+            >
+              <span class="submenu-dot"></span>
+              تجهیزات کشاورزی
+            </button>
+
+            <button
+              class="submenu-link"
+              onclick="menuFilter('protection')"
+            >
+              <span class="submenu-dot"></span>
+              محافظت از گیاه
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+
+      <button
+        class="menu-link"
+        onclick="menuFilter('fertilizer')"
+      >
+        <span class="menu-icon">🌱</span>
+        <span class="menu-link-text">کودهای کشاورزی</span>
+      </button>
+
+      <button
+        class="menu-link"
+        onclick="menuFilter('seed')"
+      >
+        <span class="menu-icon">🌾</span>
+        <span class="menu-link-text">بذر و نشا</span>
+      </button>
+
+      <button
+        class="menu-link"
+        onclick="menuFilter('equipment')"
+      >
+        <span class="menu-icon">⚒</span>
+        <span class="menu-link-text">تجهیزات کشاورزی</span>
+      </button>
+
+      <button
+        class="menu-link"
+        onclick="menuFilter('protection')"
+      >
+        <span class="menu-icon">◈</span>
+        <span class="menu-link-text">محافظت از گیاه</span>
+      </button>
+
+      <div class="menu-divider"></div>
+
+      <div class="menu-section-label">حساب و اطلاعات</div>
+
+      <button class="menu-link" onclick="menuOpenCart()">
+        <span class="menu-icon">🛒</span>
+        <span class="menu-link-text">سبد خرید من</span>
+      </button>
+
+      <button class="menu-link" onclick="menuNavigate('about')">
+        <span class="menu-icon">ⓘ</span>
+        <span class="menu-link-text">درباره بارآور</span>
+      </button>
+
+    </div>
+
+    <div class="side-menu-footer">
+      <strong>بارآور</strong>
+      <p>انتخاب بهتر، رشد پربارتر</p>
+    </div>
+
+  </aside>
+</div>
 
 <main>
 
@@ -1289,6 +1744,7 @@ footer{
 <section class="hero container" id="home">
   <div class="hero-box">
     <div class="hero-content">
+
       <div class="hero-label">🌿 همراه مطمئن کشاورزی شما</div>
 
       <h1>
@@ -1305,6 +1761,7 @@ footer{
         مشاهده محصولات
         <span>←</span>
       </a>
+
     </div>
   </div>
 </section>
@@ -1347,11 +1804,14 @@ footer{
     <div>
       <div class="section-eyebrow">فروشگاه بارآور</div>
       <h2>محصولات ما</h2>
-      <p class="section-description">محصول موردنظرت رو انتخاب کن و جزئیاتش رو ببین.</p>
+      <p class="section-description">
+        محصول موردنظرت رو انتخاب کن و جزئیاتش رو ببین.
+      </p>
     </div>
   </div>
 
   <div class="shop-tools">
+
     <div class="search-box">
       <span class="search-icon">⌕</span>
       <input
@@ -1362,20 +1822,35 @@ footer{
       >
     </div>
 
-    <select class="sort-select" id="sortSelect" aria-label="مرتب‌سازی محصولات">
+    <select
+      class="sort-select"
+      id="sortSelect"
+      aria-label="مرتب‌سازی محصولات"
+    >
       <option value="default">مرتب‌سازی پیش‌فرض</option>
       <option value="cheap">ارزان‌ترین</option>
       <option value="expensive">گران‌ترین</option>
       <option value="name">نام محصول</option>
     </select>
+
   </div>
 
   <div class="categories" id="categories">
-    <button class="category-btn active" data-category="all">همه محصولات</button>
-    <button class="category-btn" data-category="fertilizer">کود کشاورزی</button>
-    <button class="category-btn" data-category="seed">بذر</button>
-    <button class="category-btn" data-category="equipment">تجهیزات</button>
-    <button class="category-btn" data-category="protection">محافظت گیاه</button>
+    <button class="category-btn active" data-category="all">
+      همه محصولات
+    </button>
+    <button class="category-btn" data-category="fertilizer">
+      کود کشاورزی
+    </button>
+    <button class="category-btn" data-category="seed">
+      بذر
+    </button>
+    <button class="category-btn" data-category="equipment">
+      تجهیزات
+    </button>
+    <button class="category-btn" data-category="protection">
+      محافظت گیاه
+    </button>
   </div>
 
   <div class="product-grid" id="productGrid"></div>
@@ -1400,6 +1875,7 @@ footer{
 <!-- FOOTER -->
 <footer>
   <div class="container">
+
     <div class="footer-inner">
       <div>
         <div class="footer-title">بارآور</div>
@@ -1414,10 +1890,11 @@ footer{
     <div class="footer-copy">
       © بارآور — تمامی حقوق محفوظ است.
     </div>
+
   </div>
 </footer>
 
-<!-- PRODUCT DETAILS MODAL -->
+<!-- PRODUCT MODAL -->
 <div
   class="modal-backdrop"
   id="productModal"
@@ -1428,13 +1905,18 @@ footer{
 >
   <div class="product-modal">
 
-    <button class="modal-close" onclick="closeProductModal()" aria-label="بستن">×</button>
+    <button
+      class="modal-close"
+      onclick="closeProductModal()"
+      aria-label="بستن"
+    >×</button>
 
     <div class="modal-visual">
       <span class="modal-symbol" id="modalSymbol">🌱</span>
     </div>
 
     <div class="modal-content">
+
       <div class="modal-category" id="modalCategory"></div>
 
       <h2 class="modal-title" id="modalTitle"></h2>
@@ -1449,11 +1931,11 @@ footer{
             <small>تومان</small>
           </div>
         </div>
-
         <span>🌿</span>
       </div>
 
       <div class="detail-list">
+
         <div class="detail-row">
           <span>دسته‌بندی</span>
           <span id="modalCategoryDetail"></span>
@@ -1473,6 +1955,7 @@ footer{
           <span>وضعیت اطلاعات</span>
           <span>نیازمند تأیید فروشگاه</span>
         </div>
+
       </div>
 
       <button class="modal-add" id="modalAddBtn">
@@ -1482,31 +1965,46 @@ footer{
       <p class="modal-note">
         قیمت، برند و مشخصات این نسخه نمونه هستند و باید با اطلاعات واقعی جایگزین شوند.
       </p>
+
     </div>
 
   </div>
 </div>
 
-<!-- CART PANEL -->
-<div class="cart-backdrop" id="cartBackdrop" onclick="cartBackdropClose(event)">
+<!-- CART -->
+<div
+  class="cart-backdrop"
+  id="cartBackdrop"
+  onclick="cartBackdropClose(event)"
+>
   <aside class="cart-panel" aria-label="سبد خرید">
 
     <div class="cart-header">
       <h2>سبد خرید شما</h2>
-      <button class="cart-close" onclick="closeCart()" aria-label="بستن سبد">×</button>
+      <button
+        class="cart-close"
+        onclick="closeCart()"
+        aria-label="بستن سبد"
+      >×</button>
     </div>
 
     <div class="cart-items" id="cartItems"></div>
 
     <div class="cart-footer">
+
       <div class="cart-total-row">
         <span>مجموع سبد خرید</span>
         <span class="cart-total" id="cartTotal">۰ تومان</span>
       </div>
 
-      <button class="checkout-btn" id="checkoutBtn" onclick="checkout()">
+      <button
+        class="checkout-btn"
+        id="checkoutBtn"
+        onclick="checkout()"
+      >
         ادامه فرایند خرید
       </button>
+
     </div>
 
   </aside>
@@ -1514,6 +2012,7 @@ footer{
 
 <!-- MOBILE NAV -->
 <nav class="mobile-nav">
+
   <a href="#home" class="active">
     <span class="nav-icon">⌂</span>
     <span>خانه</span>
@@ -1529,20 +2028,18 @@ footer{
     <span>سبد خرید</span>
   </button>
 
-  <a href="#about">
-    <span class="nav-icon">ⓘ</span>
-    <span>درباره ما</span>
-  </a>
+  <button onclick="openMenu()">
+    <span class="nav-icon">☰</span>
+    <span>منو</span>
+  </button>
+
 </nav>
 
 <div class="toast" id="toast"></div>
 
 <script>
-/* =====================================
-   اطلاعات نمونه محصولات بارآور
-   قیمت‌ها و مشخصات را با اطلاعات واقعی
-   فروشگاه جایگزین کنید.
-===================================== */
+
+/* PRODUCTS */
 
 const products = [
   {
@@ -1703,9 +2200,7 @@ const products = [
   }
 ];
 
-/* =====================================
-   تنظیمات و وضعیت فروشگاه
-===================================== */
+/* STATE */
 
 const formatNumber = number =>
   new Intl.NumberFormat("fa-IR").format(number);
@@ -1714,31 +2209,150 @@ const formatPrice = number =>
   new Intl.NumberFormat("fa-IR").format(number);
 
 let selectedCategory = "all";
-let currentProductId = null;
 let toastTimer = null;
-
 let cart = {};
 
-try {
-  const savedCart = JSON.parse(localStorage.getItem("baravarCart") || "{}");
+try{
+  const savedCart = JSON.parse(
+    localStorage.getItem("baravarCart") || "{}"
+  );
 
-  if(savedCart && typeof savedCart === "object" && !Array.isArray(savedCart)){
+  if(
+    savedCart &&
+    typeof savedCart === "object" &&
+    !Array.isArray(savedCart)
+  ){
     cart = savedCart;
   }
-} catch(error) {
+}catch(error){
   cart = {};
 }
 
-/* =====================================
-   نمایش محصولات
-===================================== */
+/* HELPERS */
+
+function escapeHTML(value){
+  return String(value).replace(/[&<>"']/g,character => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  })[character]);
+}
+
+function shortText(text,limit){
+  if(text.length <= limit) return text;
+  return text.slice(0,limit).trim() + "…";
+}
+
+function updateBodyLock(){
+  const anyOpen =
+    document.getElementById("menuOverlay").classList.contains("open") ||
+    document.getElementById("productModal").classList.contains("open") ||
+    document.getElementById("cartBackdrop").classList.contains("open");
+
+  document.body.classList.toggle("locked",anyOpen);
+}
+
+/* SIDE MENU */
+
+function openMenu(){
+
+  closeProductModal();
+  closeCart();
+
+  const overlay = document.getElementById("menuOverlay");
+
+  overlay.classList.add("open");
+
+  document.getElementById("menuToggle")
+    .setAttribute("aria-expanded","true");
+
+  updateBodyLock();
+}
+
+function closeMenu(){
+
+  const overlay = document.getElementById("menuOverlay");
+
+  overlay.classList.remove("open");
+
+  document.getElementById("menuToggle")
+    .setAttribute("aria-expanded","false");
+
+  updateBodyLock();
+}
+
+function menuBackdropClose(event){
+
+  if(event.target.id === "menuOverlay"){
+    closeMenu();
+  }
+}
+
+function toggleProductsAccordion(){
+
+  const content = document.getElementById("productsAccordion");
+  const button = document.getElementById("productsAccordionBtn");
+
+  const isOpen = content.classList.toggle("open");
+
+  button.classList.toggle("expanded",isOpen);
+  button.setAttribute("aria-expanded",String(isOpen));
+}
+
+function menuNavigate(sectionId){
+
+  closeMenu();
+
+  setTimeout(() => {
+    const section = document.getElementById(sectionId);
+    if(section){
+      section.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+    }
+  },100);
+}
+
+function menuFilter(category){
+
+  selectedCategory = category;
+
+  document.querySelectorAll(".category-btn").forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.category === category
+    );
+  });
+
+  document.getElementById("searchInput").value = "";
+
+  renderProducts();
+  closeMenu();
+
+  setTimeout(() => {
+    document.getElementById("shop").scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+  },100);
+}
+
+function menuOpenCart(){
+  closeMenu();
+  openCart();
+}
+
+/* RENDER PRODUCTS */
 
 function renderProducts(){
 
   const grid = document.getElementById("productGrid");
-  const search = document.getElementById("searchInput").value
-    .trim()
-    .toLocaleLowerCase("fa-IR");
+
+  const search = document.getElementById("searchInput")
+    .value.trim().toLocaleLowerCase("fa-IR");
 
   let filtered = products.filter(product => {
 
@@ -1752,9 +2366,7 @@ function renderProducts(){
       product.categoryName
     ).toLocaleLowerCase("fa-IR");
 
-    const matchesSearch = searchText.includes(search);
-
-    return matchesCategory && matchesSearch;
+    return matchesCategory && searchText.includes(search);
   });
 
   const sort = document.getElementById("sortSelect").value;
@@ -1772,6 +2384,7 @@ function renderProducts(){
   }
 
   if(filtered.length === 0){
+
     grid.innerHTML = `
       <div class="empty-state">
         محصولی با این مشخصات پیدا نشد.
@@ -1779,6 +2392,7 @@ function renderProducts(){
         عبارت دیگری را جست‌وجو کن.
       </div>
     `;
+
     return;
   }
 
@@ -1790,13 +2404,15 @@ function renderProducts(){
       tabindex="0"
       role="button"
       aria-label="مشاهده جزئیات ${escapeHTML(product.name)}"
-      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProduct(${product.id})}"
+      onkeydown="if(event.target===this&&(event.key==='Enter'||event.key===' ')){event.preventDefault();openProduct(${product.id})}"
     >
 
       <div class="product-visual">
 
         ${product.badge ? `
-          <span class="product-badge">${escapeHTML(product.badge)}</span>
+          <span class="product-badge">
+            ${escapeHTML(product.badge)}
+          </span>
         ` : ""}
 
         <span class="product-symbol">${product.symbol}</span>
@@ -1823,7 +2439,10 @@ function renderProducts(){
             <div class="product-price">
               ${formatPrice(product.price)}
             </div>
-            <div class="product-unit">تومان · ${escapeHTML(product.unit)}</div>
+
+            <div class="product-unit">
+              تومان · ${escapeHTML(product.unit)}
+            </div>
           </div>
 
           <button
@@ -1841,26 +2460,7 @@ function renderProducts(){
   `).join("");
 }
 
-/* جلوگیری از نمایش متن HTML به عنوان کد */
-
-function escapeHTML(value){
-  return String(value).replace(/[&<>"']/g,character => ({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#39;"
-  })[character]);
-}
-
-function shortText(text,limit){
-  if(text.length <= limit) return text;
-  return text.slice(0,limit).trim() + "…";
-}
-
-/* =====================================
-   جزئیات محصول
-===================================== */
+/* PRODUCT DETAILS */
 
 function openProduct(id){
 
@@ -1868,9 +2468,8 @@ function openProduct(id){
 
   if(!product) return;
 
-  currentProductId = id;
-
-  document.getElementById("modalSymbol").textContent = product.symbol;
+  document.getElementById("modalSymbol").textContent =
+    product.symbol;
 
   document.getElementById("modalCategory").textContent =
     product.categoryName;
@@ -1899,16 +2498,15 @@ function openProduct(id){
   };
 
   document.getElementById("productModal").classList.add("open");
-  document.body.style.overflow = "hidden";
+
+  updateBodyLock();
 }
 
 function closeProductModal(){
 
   document.getElementById("productModal").classList.remove("open");
 
-  if(!document.getElementById("cartBackdrop").classList.contains("open")){
-    document.body.style.overflow = "";
-  }
+  updateBodyLock();
 }
 
 function backdropClose(event){
@@ -1918,18 +2516,7 @@ function backdropClose(event){
   }
 }
 
-/* =====================================
-   سبد خرید
-===================================== */
-
-function saveCart(){
-
-  try{
-    localStorage.setItem("baravarCart",JSON.stringify(cart));
-  }catch(error){
-    showToast("ذخیره سبد خرید در مرورگر ممکن نشد.");
-  }
-}
+/* CART */
 
 function cleanCart(){
 
@@ -1943,10 +2530,21 @@ function cleanCart(){
     if(product && Number.isInteger(count) && count > 0){
       cleaned[id] = Math.min(count,99);
     }
-
   });
 
   cart = cleaned;
+}
+
+function saveCart(){
+
+  try{
+    localStorage.setItem(
+      "baravarCart",
+      JSON.stringify(cart)
+    );
+  }catch(error){
+    showToast("ذخیره سبد خرید ممکن نشد.");
+  }
 }
 
 function addToCart(id){
@@ -2011,7 +2609,9 @@ function updateCart(){
 
     cartItems.innerHTML = entries.map(([id,quantity]) => {
 
-      const product = products.find(item => item.id === Number(id));
+      const product = products.find(
+        item => item.id === Number(id)
+      );
 
       if(!product) return "";
 
@@ -2061,7 +2661,6 @@ function updateCart(){
       `;
 
     }).join("");
-
   }
 
   document.getElementById("headerCartCount").textContent =
@@ -2072,23 +2671,24 @@ function updateCart(){
 
   document.getElementById("checkoutBtn").disabled =
     totalQuantity === 0;
-
 }
 
 function openCart(){
 
+  closeMenu();
   closeProductModal();
 
   document.getElementById("cartBackdrop").classList.add("open");
-  document.body.style.overflow = "hidden";
 
   updateCart();
+  updateBodyLock();
 }
 
 function closeCart(){
 
   document.getElementById("cartBackdrop").classList.remove("open");
-  document.body.style.overflow = "";
+
+  updateBodyLock();
 }
 
 function cartBackdropClose(event){
@@ -2098,15 +2698,9 @@ function cartBackdropClose(event){
   }
 }
 
-/* =====================================
-   ثبت سفارش آزمایشی
-===================================== */
-
 function checkout(){
 
-  const hasItems = Object.keys(cart).length > 0;
-
-  if(!hasItems){
+  if(Object.keys(cart).length === 0){
     showToast("سبد خرید خالی است.");
     return;
   }
@@ -2114,15 +2708,11 @@ function checkout(){
   alert(
     "سبد خریدت آماده است! 🌱\n\n" +
     "این نسخه نمایشی فروشگاه بارآور است.\n" +
-    "ثبت سفارش واقعی، پرداخت و ارسال هنوز فعال نشده‌اند.\n\n" +
-    "برای فعال شدن خرید واقعی باید سیستم ثبت سفارش به سایت متصل شود."
+    "ثبت سفارش واقعی، پرداخت و ارسال هنوز فعال نشده‌اند."
   );
-
 }
 
-/* =====================================
-   پیام کوتاه
-===================================== */
+/* TOAST */
 
 function showToast(message){
 
@@ -2138,50 +2728,55 @@ function showToast(message){
   },2400);
 }
 
-/* =====================================
-   فیلتر دسته‌بندی و جست‌وجو
-===================================== */
+/* FILTERS */
 
-document.getElementById("categories").addEventListener("click",event => {
+document.getElementById("categories").addEventListener(
+  "click",
+  event => {
 
-  const button = event.target.closest("[data-category]");
+    const button = event.target.closest("[data-category]");
 
-  if(!button) return;
+    if(!button) return;
 
-  selectedCategory = button.dataset.category;
+    selectedCategory = button.dataset.category;
 
-  document.querySelectorAll(".category-btn").forEach(item => {
-    item.classList.toggle("active",item === button);
-  });
+    document.querySelectorAll(".category-btn").forEach(item => {
+      item.classList.toggle("active",item === button);
+    });
 
-  renderProducts();
+    renderProducts();
+  }
+);
 
-});
+document.getElementById("searchInput")
+  .addEventListener("input",renderProducts);
 
-document.getElementById("searchInput").addEventListener("input",renderProducts);
+document.getElementById("sortSelect")
+  .addEventListener("change",renderProducts);
 
-document.getElementById("sortSelect").addEventListener("change",renderProducts);
-
-/* بستن پنجره‌ها با دکمه Escape */
+/* ESCAPE */
 
 document.addEventListener("keydown",event => {
 
-  if(event.key === "Escape"){
+  if(event.key !== "Escape") return;
 
-    if(document.getElementById("productModal").classList.contains("open")){
-      closeProductModal();
-    }else if(document.getElementById("cartBackdrop").classList.contains("open")){
-      closeCart();
-    }
-
+  if(document.getElementById("menuOverlay").classList.contains("open")){
+    closeMenu();
+  }
+  else if(document.getElementById("productModal").classList.contains("open")){
+    closeProductModal();
+  }
+  else if(document.getElementById("cartBackdrop").classList.contains("open")){
+    closeCart();
   }
 
 });
 
-/* شروع فروشگاه */
+/* START */
 
 renderProducts();
 updateCart();
+
 </script>
 
 </body>
